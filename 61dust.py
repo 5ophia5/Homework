@@ -31,11 +31,14 @@ parser.add_argument('--lowercase', action='store_true',
 # finalization
 arg = parser.parse_args()
 
+#default output is N-based masking, --lowercase for lowercase masking
 masked = ''
 for name, seq in mcb185.read_fasta(arg.fasta):
 	if arg.lowercase: masked = mcb185.low_mask(seq, arg.winsz, arg.hthresh)
-	else: masked =mcb185.N_mask(seq, arg.winsz, arg.hthresh)
+	else: masked = mcb185.N_mask(seq, arg.winsz, arg.hthresh)
 	print(masked)
 	
+#command line: python3 61dust.py --fasta ../MCB185-2022/Data/chr1.fa --winsz 30 --hthresh 1.3 
+# or: python3 61dust.py --fasta ../MCB185-2022/Data/chr1.fa --winsz 30 --hthresh 1.3 --lowercase
 
 
